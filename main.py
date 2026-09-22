@@ -1,11 +1,8 @@
-import requests
+from business import *
 
-def call_api(methode, url):
-    try:
-        response = requests.request(methode, url, timeout=10)
-        response.raise_for_status()
-        return response.json()
+city = ["Mérignac","Bayonne"]
 
-    except requests.RequestException as e:
-        print("Erreur lors de l'appel API :", e)
-        return None
+data = getTempByCity(city)
+
+for city in data:
+    print(city["city"], ':' , city["days"])
